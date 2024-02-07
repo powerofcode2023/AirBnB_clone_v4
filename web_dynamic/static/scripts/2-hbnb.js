@@ -20,7 +20,7 @@ $(document).ready(function() {
       $('.amenities h4').text(selectedAmenities);
   });
   
-  $.get('http://0.0.0.0:5001/api/v1/status/', function(data) {
+  $.get('http://localhost:5001/api/v1/status/', function(data) {
     // Vérifier si le statut est "OK"
     if (data.status === 'OK') {
       // Ajouter la classe "available" à l'élément div#api_status
