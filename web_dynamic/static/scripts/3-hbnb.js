@@ -17,7 +17,12 @@ $(document).ready(function() {
           selectedAmenities = selectedAmenities.substring(0, maxLength) + '...';
       }
 
-      $('.amenities h4').text(selectedAmenities);
+      // Utiliser un espace non-sécable si aucune commodité n'est sélectionnée
+      if (selectedAmenities.length === 0) {
+        selectedAmenities = "&#160;"; // Espace non-sécable HTML
+      }
+
+      $('.amenities h4').html(selectedAmenities);
   });
   
   $.get('http://localhost:5001/api/v1/status/', function(data) {
@@ -39,9 +44,9 @@ $(document).ready(function() {
     success: function(places) {
       places.forEach(function(place) {
         const article = `<article>
-          <div class="title">
+          <div class="title_box">
             <h2>${place.name}</h2>
-            <div class="price_by_night">${place.price_by_night}</div>
+            <div class="price_by_night">$${place.price_by_night}</div>
           </div>
           <div class="information">
             <div class="max_guest">${place.max_guest} Guest${place.max_guest !== 1 ? 's' : ''}</div>
