@@ -17,7 +17,12 @@ $(document).ready(function() {
           selectedAmenities = selectedAmenities.substring(0, maxLength) + '...';
       }
 
-      $('.amenities h4').text(selectedAmenities);
+      // Utiliser un espace non-sécable si aucune commodité n'est sélectionnée
+      if (selectedAmenities.length === 0) {
+       selectedAmenities = "&#160;"; // Espace non-sécable HTML
+      }
+
+      $('.amenities h4').html(selectedAmenities);
   });
   
   $.get('http://localhost:5001/api/v1/status/', function(data) {
